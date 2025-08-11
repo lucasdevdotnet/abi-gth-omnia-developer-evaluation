@@ -4,6 +4,7 @@ namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities
 {
     public class SaleTests
     {
+
         [Fact]
         public void Constructor_ShouldInitializeProperties()
         {
@@ -17,7 +18,7 @@ namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities
             var branchName = "Filial Teste";
 
             // Act
-            var sale = new DeveloperEvaluation.Domain.Entities.Sale(id, number, saleDate, customerId, customerName, branchId, branchName);
+            var sale = new Sale(id, number, saleDate, customerId, customerName, branchId, branchName);
 
             // Assert
             Assert.Equal(id, sale.Id);
@@ -35,10 +36,10 @@ namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities
         public void TotalAmount_ShouldSumAllItemTotals()
         {
             // Arrange
-            var sale = new DeveloperEvaluation.Domain.Entities.Sale(Guid.NewGuid(), "S123", DateTime.Now, Guid.NewGuid(), "Cliente", Guid.NewGuid(), "Filial");
+            var sale = new Sale(Guid.NewGuid(), "S123", DateTime.Now, Guid.NewGuid(), "Cliente", Guid.NewGuid(), "Filial");
             var item1 = new SaleItem(Guid.NewGuid(), Guid.NewGuid(), "Produto 1", 2, 10m, 0m); // 2*10 = 20
             var item2 = new SaleItem(Guid.NewGuid(), Guid.NewGuid(), "Produto 2", 3, 5m, 0.1m); // 3*5*0.9 = 13.5
-            var itemsField = typeof(DeveloperEvaluation.Domain.Entities.Sale).GetField("_items", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var itemsField = typeof(Sale).GetField("_items", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             var itemsList = (List<SaleItem>)itemsField.GetValue(sale);
             itemsList.Add(item1);
             itemsList.Add(item2);
