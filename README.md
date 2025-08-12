@@ -84,3 +84,37 @@ This section includes links to the detailed documentation for the different API 
 This section describes the overall structure and organization of the project files and directories. 
 
 See [Project Structure](/.doc/project-structure.md)
+
+## Running the Project with Docker
+
+You can run the entire solution (API, database, cache, etc.) using Docker Compose. Make sure you have Docker and Docker Compose installed on your machine.
+
+### 1. Build and Start the Containers
+
+From the root of the repository (where the `docker-compose.yml` file is located), run:
+
+```sh
+docker-compose build --no-cache
+docker-compose up -d
+```
+
+This will build the images and start all services in the background.
+
+### 2. Accessing the API
+
+- The API will be available at: [http://localhost:8080](http://localhost:8080)
+- The Swagger UI (API documentation) will be available at: [http://localhost:8080/swagger/index.html](http://localhost:8080/swagger/index.html)
+
+### 3. Stopping the Containers
+
+To stop all running containers:
+
+```sh
+docker-compose down
+```
+
+### 4. Troubleshooting
+
+- Ensure the environment variables in `docker-compose.yml` are correctly indented and set.
+- If you make code changes, rebuild the images with `docker-compose build --no-cache`.
+- Check logs with `docker-compose logs -f` for troubleshooting.
