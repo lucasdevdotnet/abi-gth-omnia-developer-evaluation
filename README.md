@@ -113,6 +113,10 @@ To stop all running containers:
 docker-compose down
 ```
 
+<img width="1540" height="384" alt="image" src="https://github.com/user-attachments/assets/dfe41a07-4665-4e82-80b4-c8d7eb80270b" />
+
+<img width="1157" height="366" alt="image" src="https://github.com/user-attachments/assets/867b699c-a261-45f0-b97c-9ef80fd9e729" />
+
 ### 4. Troubleshooting
 
 - Ensure the environment variables in `docker-compose.yml` are correctly indented and set.
