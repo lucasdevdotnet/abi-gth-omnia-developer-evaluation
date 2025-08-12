@@ -7,7 +7,6 @@ using Ambev.DeveloperEvaluation.IoC;
 using Ambev.DeveloperEvaluation.ORM;
 using Ambev.DeveloperEvaluation.WebApi.Middleware;
 using MediatR;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 namespace Ambev.DeveloperEvaluation.WebApi;
@@ -41,8 +40,6 @@ public class Program
         builder.RegisterDependencies();
 
         builder.Services.AddAutoMapper(typeof(Program).Assembly, typeof(ApplicationLayer).Assembly);
-
-    //    builder.Services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo("/app/keys"));
 
         builder.Services.AddMediatR(cfg =>
         {
