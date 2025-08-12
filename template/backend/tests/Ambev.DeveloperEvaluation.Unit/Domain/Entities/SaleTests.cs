@@ -1,12 +1,13 @@
-using Ambev.DeveloperEvaluation.Domain.Entities;
 using Xunit;
+using Ambev.DeveloperEvaluation.Domain.Entities;
+using Ambev.DeveloperEvaluation.Unit.Domain.Entities.TestData;
 namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities
 {
     public class SaleTests
     {
 
         [Fact]
-        public void Constructor_ShouldInitializeProperties()
+        public void ConstructorShouldInitializeProperties()
         {
             // Arrange
             var id = Guid.NewGuid();
@@ -18,7 +19,7 @@ namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities
             var branchName = "Filial Teste";
 
             // Act
-            var sale = new Sale(id, number, saleDate, customerId, customerName, branchId, branchName);
+            var sale = new Ambev.DeveloperEvaluation.Domain.Entities.Sale(id, number, saleDate, customerId, customerName, branchId, branchName);
 
             // Assert
             Assert.Equal(id, sale.Id);
@@ -30,6 +31,39 @@ namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities
             Assert.Equal(branchName, sale.BranchName);
             Assert.False(sale.Cancelled);
             Assert.Empty(sale.Items);
+        }
+
+        [Fact]
+        public void Constructor_ShouldInitializeProperties()
+        {
+            // Arrange
+            // Act
+            var sale = SaleTestData.GenerateValidSale();
+
+            // Assert
+            Assert.NotEqual(Guid.Empty, sale.Id);
+            Assert.False(string.IsNullOrWhiteSpace(sale.Number));
+            Assert.NotEqual(default(DateTime), sale.SaleDate);
+            Assert.NotEqual(Guid.Empty, sale.CustomerId);
+            Assert.False(string.IsNullOrWhiteSpace(sale.CustomerName));
+            Assert.NotEqual(Guid.Empty, sale.BranchId);
+            Assert.False(string.IsNullOrWhiteSpace(sale.BranchName));
+            Assert.False(sale.Cancelled);
+            Assert.Empty(sale.Items);
+        }
+
+        [Fact]
+        public void TotalAmountShouldSumAllItemTotals()
+        {
+            // Arrange
+            var sale = SaleTestData.GenerateSaleWithItems(2);
+            var expectedTotal = sale.Items.Sum(i => i.Total);
+
+            // Act
+            var total = sale.TotalAmount;
+
+            // Assert
+            Assert.Equal(expectedTotal, total);
         }
 
         [Fact]
