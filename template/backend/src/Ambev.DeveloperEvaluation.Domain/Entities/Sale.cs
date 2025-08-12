@@ -1,7 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Services;
-using Ambev.DeveloperEvaluation.Domain.Events;
-
-namespace Ambev.DeveloperEvaluation.Domain.Entities
+﻿namespace Ambev.DeveloperEvaluation.Domain.Entities
 {
     public class Sale
     {
@@ -19,13 +16,8 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
 
         public decimal TotalAmount => _items.Sum(i => i.Total);
 
-        private readonly ISaleDomainService? _saleDomainService;
-
-        // Construtor para o EF Core
         public Sale() { }
 
-
-        // Construtor de domínio
         public Sale(Guid id, string number, DateTime saleDate, Guid customerId, string customerName, Guid branchId, string branchName)
         {
             Id = id;
